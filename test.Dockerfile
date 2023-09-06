@@ -1,5 +1,5 @@
 # Use playwright image as a base
-FROM mcr.microsoft.com/playwright:v1.31.0-beta-1676685153000-focal-arm64
+FROM mcr.microsoft.com/playwright:v1.34.0-jammy as playwright
 
 # Set the working directory inside the container
 WORKDIR /b2b

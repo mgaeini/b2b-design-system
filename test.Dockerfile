@@ -1,4 +1,20 @@
-FROM mcr.microsoft.com/playwright:v1.22.0-focal as playwright
+# Use playwright image as a base
+FROM mcr.microsoft.com/playwright:v1.31.0-beta-1676685153000-focal-arm64
+
+# Set the working directory inside the container
+WORKDIR /b2b
+
+
+COPY . .
+
+RUN npm uninstall puppeteer
+
+
 WORKDIR /b2b/packages/core-components
-ENTRYPOINT ["npx", "test-storybook", "--verbose", "--url", "http://host.docker.internal:6006"]
-#CMD npx test-storybook --url http://host.docker.internal:6006
+RUN npm install
+
+# Install top-level dependencies
+WORKDIR /b2b
+RUN npm install
+
+
